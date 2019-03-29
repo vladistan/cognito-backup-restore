@@ -56,19 +56,6 @@ const verifyOptions = async () => {
         mode = modeChoice.selected.toLowerCase();
     }
 
-    // choose your profile from available AWS profiles if not passed through CLI
-    // only shown in case when no valid profile or no key && secret is passed.
-    if (!savedAWSProfiles.includes(profile) && (!key || !secret)) {
-        const awsProfileChoice = await inquirer.prompt({
-            type: 'autocomplete',
-            name: 'selected',
-            message: 'Choose your AWS Profile',
-            source: searchAWSProfile,
-        } as inquirer.Question);
-
-        profile = awsProfileChoice.selected;
-    };
-
     // choose your region if not passed through CLI
     if (!region) {
         const awsRegionChoice = await inquirer.prompt({
